@@ -112,12 +112,6 @@
       "node"
     ]
   },
-  "babel": {
-    "presets": [
-      "react-app",
-      "mobx"
-    ]
-  },
   "devDependencies": {
     "@babel/core": "^7.1.0",
     "@storybook/react": "^4.1.1",
