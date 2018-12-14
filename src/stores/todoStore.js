@@ -5,11 +5,11 @@ export default class TodoStore {
 
     @action.bound
     add(todo) {
-        this.list.push(todo);
+    	this.list.push(todo);
     }
 
     @action.bound
     remove(todo) {
-        this.list.splice(this.list.indexOf(todo), 1);
+    	this.list.splice(this.list.indexOf(todo), 1);
     }
 }

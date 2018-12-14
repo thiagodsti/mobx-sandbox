@@ -5,11 +5,11 @@ export default class NumberStore {
 
     @action.bound
     increase() {
-        this.value++;
+    	this.value++;
     }
 
     @action.bound
     decrease() {
-        this.value--;
+    	this.value--;
     }
 }
