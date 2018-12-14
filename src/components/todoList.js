@@ -1,5 +1,5 @@
 import React from 'react';
-import { PropTypes } from 'mobx-react';
+import { PropTypes } from 'prop-types';
 
 const TodoList = (props) => {
   const { list, handleRemove } = props;
@@ -24,10 +24,12 @@ const TodoList = (props) => {
 };
 
 TodoList.propTypes = {
-  list: PropTypes.arrayOf(PropTypes.shape({
-    status: PropTypes.string,
-    msg: PropTypes.string,
-  })).isRequired,
+  list: PropTypes.arrayOf(
+    PropTypes.shape({
+      status: PropTypes.string,
+      msg: PropTypes.string,
+    }).isRequired,
+  ).isRequired,
   handleRemove: PropTypes.func.isRequired,
 };
 
