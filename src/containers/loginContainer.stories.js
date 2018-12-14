@@ -2,13 +2,14 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import LoginContainer from './loginContainer';
 import { Provider } from 'mobx-react';
-
-const store = {
-  isAuthenticated: false
-};
+import store from 'stores';
 
 storiesOf('LoginContainer', module)
-  .addDecorator(story => <Provider store={store}>{story}</Provider>)
+  .addDecorator(story => <Provider authStore={store.authStore}>{story()}</Provider>)
   .add('with text', () => (
-    <LoginContainer/>
+    <div className="App">
+      <header className="App-header">
+        <LoginContainer/>
+      </header>
+    </div>
   ));

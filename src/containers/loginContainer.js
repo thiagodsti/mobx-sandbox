@@ -63,7 +63,6 @@ class LoginContainer extends Component {
     render() {
         return (
           <div>
-            <header className="App-header">
 
                 <p>Welcome</p>
 
@@ -82,8 +81,6 @@ class LoginContainer extends Component {
                         <Button type="submit">Login</Button>
                     </FormGroupButtons>
                 </form>
-
-            </header>
 
           </div>
         );

@@ -7,9 +7,7 @@ function requireAll(requireContext) {
   }
 
 function loadStories() {
-  //require('../stories/index.js');
   requireAll(require.context("../src", true, /.stories.jsx?$/));  
-  // You can require as many stories as you need.
 }
 
 configure(loadStories, module);

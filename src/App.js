@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Route, withRouter, Link, Redirect } from 'react-router-dom'
-import './App.css';
+import './index.css';
 import { inject, observer } from 'mobx-react';
 import { Switch } from 'react-router'
 import TodoContainer from './containers/todoContainer';
