@@ -9,35 +9,37 @@ import Decrease from '../components/decrease';
 @withRouter
 @observer
 class NumberContainer extends Component {
-	render() {
-		const {
-			increase: increaseNumber,
-			decrease: decreaseNumber,
-		} = this.props.numberStore;
+  render() {
+    const { numberStore } = this.props;
+    const {
+      increase: increaseNumber,
+      decrease: decreaseNumber,
+    } = numberStore;
 
-		return (
-  <div>
-  <div>
-  <Link to="/">Back</Link>
-  <div>
-Value:
-						{this.props.numberStore.value}
-</div>
-				</div>
+    return (
+      <div>
+        <div>
+          <Link to="/">Back</Link>
+          <div>
+            Value: {numberStore.value}
+          </div>
+        </div>
 
-  <br />
+        <br />
 
-				<Route
-					exact path="/number"
-      render={() => <Increase {...this.props} increase={increaseNumber} />}
-				/>
-  <Route
-					exact path="/number/decrease"
-  render={() => <Decrease {...this.props} decrease={decreaseNumber} />}
-				/>
-			</div>
-		);
-	}
+        <Route
+          exact
+          path="/number"
+          render={() => <Increase {...this.props} increase={increaseNumber} />}
+        />
+        <Route
+          exact
+          path="/number/decrease"
+          render={() => <Decrease {...this.props} decrease={decreaseNumber} />}
+        />
+      </div>
+    );
+  }
 }
 
 export default NumberContainer;

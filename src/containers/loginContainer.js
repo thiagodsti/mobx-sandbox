@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { inject, observer } from 'mobx-react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 
 const Input = styled.input`
@@ -34,56 +35,64 @@ const Button = styled.button`
 @observer
 class LoginContainer extends Component {
     state = {
-    	username: '',
-    	password: '',
+      username: '',
+      password: '',
     }
 
 
     login = (e) => {
-    	e.preventDefault();
-    	const isSuccess = this.props.authStore.authenticate(this.state.username, this.state.password);
-    	if (!isSuccess) {
-    		alert('Login wrong');
-    	} else {
-    		this.props.history.replace('/');
-    	}
+      const { authStore, history } = this.props;
+      const { username, password } = this.state;
+      e.preventDefault();
+      const isSuccess = authStore.authenticate(username, password);
+      if (!isSuccess) {
+        alert('Login wrong');
+      } else {
+        history.replace('/');
+      }
     }
 
     handleChange = (event) => {
-    	const target = event.target;
-    	const value = target.type === 'checkbox' ? target.checked : target.value;
-    	const name = target.name;
+      const { target } = event;
+      const { name } = target;
+      const value = target.type === 'checkbox' ? target.checked : target.value;
 
-    	this.setState({
-    		[name]: value,
-    	});
+      this.setState({
+        [name]: value,
+      });
     }
 
     render() {
-    	return (
-      <div>
+      const { username, password } = this.state;
+      return (
+        <div>
 
-      <p>Welcome</p>
+          <p>Welcome</p>
 
-      <form onSubmit={this.login}>
-          <FormGroup>
-          <Label htmlFor="username"><b>Username</b></Label>
-          <Input type="text" placeholder="Enter Username" name="username" value={this.state.username} onChange={this.handleChange} required />
-        </FormGroup>
+          <form onSubmit={this.login}>
+            <FormGroup>
+              <Label htmlFor="username"><b>Username</b></Label>
+              <Input type="text" placeholder="Enter Username" name="username" value={username} onChange={this.handleChange} required />
+            </FormGroup>
 
-          <FormGroup>
-      <Label htmlFor="password"><b>Password</b></Label>
-      <Input type="password" placeholder="Enter Password" name="password" value={this.state.password} onChange={this.handleChange} required />
-    				</FormGroup>
+            <FormGroup>
+              <Label htmlFor="password"><b>Password</b></Label>
+              <Input type="password" placeholder="Enter Password" name="password" value={password} onChange={this.handleChange} required />
+            </FormGroup>
 
-          <FormGroupButtons>
-      <Button type="submit">Login</Button>
-    				</FormGroupButtons>
-    			</form>
+            <FormGroupButtons>
+              <Button type="submit">Login</Button>
+            </FormGroupButtons>
+          </form>
 
-    		</div>
-    	);
+        </div>
+      );
     }
 }
+
+LoginContainer.propTypes = {
+  authStore: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
+};
 
 export default LoginContainer;
